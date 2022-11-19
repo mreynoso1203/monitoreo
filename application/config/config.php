@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // $config['base_url'] = 'https://www.global-assist.us/panel/';
 //$config['base_url'] = 'https://maquisoporte.pe/panel/';
-	$config['base_url'] = 'https://protopsis.xyz/monitoreo/';
+	$config['base_url'] = 'http://localhost/monitoreo/';
 
 /*
 |--------------------------------------------------------------------------
