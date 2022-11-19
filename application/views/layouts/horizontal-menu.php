@@ -242,6 +242,7 @@
                                             <div class="row g-0">
                                                 <div class="col-lg-12">
                                                     <div>
+                                                        <a href="<?php echo base_url();?>web_categoria" class="dropdown-item" data-key="t-alerts">Categoría</a>
                                                         <a href="<?php echo base_url();?>web_caracteristica" class="dropdown-item" data-key="t-alerts">Características</a>
                                                         <a href="<?php echo base_url();?>web_producto" class="dropdown-item" data-key="t-alerts">Productos</a>
                                                     </div>

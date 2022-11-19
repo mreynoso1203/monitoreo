@@ -59,6 +59,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['web_informacion'] = 'C_web_informacion';
 $route['web_distribuidor'] = 'C_web_distribuidor';
 $route['web_nosotros'] = 'C_web_nosotros';
+$route['web_categoria'] = 'C_web_categoria';
 $route['web_contacto'] = 'C_web_contacto';
 $route['web_producto'] = 'C_web_producto';
 $route['web_solicitud'] = 'C_web_solicitud';
