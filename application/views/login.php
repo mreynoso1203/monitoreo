@@ -30,18 +30,18 @@
                             <div class="auth-content my-auto">
                                 <div class="text-center">
                                     <h5 class="mb-0">Intranet </h5>
-                                    <p class="text-muted mt-2">Control de cambios o seguimiento de consultas que llegan desde la web.</p>
+                                    <p class="text-muted mt-2">Control de cambios o seguimiento de consultas que se realizan a travès de la web.</p>
                                 </div>
                                 <!--<form class="custom-form mt-4 pt-2" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">-->
                                 <form role="form" method="post" action="<?php echo base_url(); ?>login" id="formLogin">
                                     <div class="mb-3 <?php //echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                                         <label class="form-label" for="ruc">DNI</label>
-                                        <input type="text" class="form-control" id="ruc" placeholder="Enter username" name="ruc" value="">
+                                        <input type="text" class="form-control" id="ruc" placeholder="Ingrese nùmero de DNI" name="ruc" value="">
                                         <span class="text-danger"><?php //echo $username_err; ?></span>
                                     </div>                                
                                     <div class="mb-3 <?php //echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                        <label class="form-label" for="usuario">Usuario SICA</label>
-                                        <input type="text" class="form-control" id="usuario" placeholder="Enter username" name="usuario" value="">
+                                        <label class="form-label" for="usuario">Usuario</label>
+                                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese Usuario" name="usuario" value="">
                                         <span class="text-danger"><?php //echo $username_err; ?></span>
                                     </div>
                                     <div class="mb-3 <?php //echo (!empty($password_err)) ? 'has-error' : ''; ?>">
@@ -57,7 +57,7 @@
                                         </div>
 
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" class="form-control" placeholder="Enter password"  name="contra" id="contra" value="" aria-label="Password" aria-describedby="password-addon">
+                                            <input type="password" class="form-control" placeholder="Ingrese su clave"  name="contra" id="contra" value="" aria-label="Password" aria-describedby="password-addon">
                                             <span class="text-danger"><?php //echo $password_err; ?></span>
                                             <!--<button class="btn btn-light ms-0" type="submit"  id="password-addon"><i class="mdi mdi-eye-outline"></i></button>-->
                                         </div>
