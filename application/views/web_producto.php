@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Productos</h4>
-                            <p class="card-title-desc">Agregue, edite y elimine productos registrados. Las imagenes de los productos deben tener un resolución de <strong>544 x 667 pixeles</strong>.</p>
+                            <p class="card-title-desc">Agregue, edite y elimine productos registrados. Las imagenes de los productos deben tener un resolución de <strong>500 x 600  pixeles</strong>.</p>
                         </div>
                         <div class="card-body">
                             <div style="display:flex;justify-content: space-between;">

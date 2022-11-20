@@ -60,31 +60,31 @@ class C_web_producto extends CI_Controller
         switch ($tipo) {
             case 'caracteristica':
                 $table='web_detalle_caracteristica';
-                $ruta='../indietro/public/img/w_detalle/w_iconos';
+                $ruta='../monitoreo/public/img/w_detalle/w_iconos';
                 $campo='imagen';
                 $allowed ='png|jpg|jpeg';
                 break;
             case 'productos':
                 $table='web_producto';
-                $ruta='../indietro/public/img/w_producto';
+                $ruta='../monitoreo/public/img/w_producto';
                 $campo='foto';
                 $allowed ='png|jpg|jpeg';
                 break; 
             case 'slider':
                 $table='web_detalle_producto_slider';
-                $ruta='../indietro/public/img/w_detalle';
+                $ruta='../monitoreo/public/img/w_detalle';
                 $campo='imagen';
                 $allowed ='png|jpg|jpeg';
                 break;
             case 'fotos':
                 $table='web_fotos_producto';
-                $ruta='../indietro/public/img/w_d_producto';
+                $ruta='../monitoreo/public/img/w_d_producto';
                 $campo='foto';
                 $allowed ='png|jpg|jpeg';
                 break;
             case 'pdf':
                 $table='web_producto';
-                $ruta='../indietro/public/img/w_archivo';
+                $ruta='../monitoreo/public/img/w_archivo';
                 $campo='archivo';
                 $allowed ='pdf';
                 break;                                                                
@@ -335,7 +335,7 @@ class C_web_producto extends CI_Controller
 
             <div class="col-lg-12">
                 <h5>Fotos Adicionales</h5>
-                <p>Las fotos adicionales pueden tener una resolución de 752x1000 o 1000x750 pixeles</p>
+                <p>Las fotos adicionales pueden tener una resolución de 500x600 pixeles</p>
             </div>
 
             <div class="col-lg-12">
@@ -354,7 +354,7 @@ class C_web_producto extends CI_Controller
                 foreach ($result_detalle_foto as $key) {
                     $cadena.='
                         <div style="display:flex;flex-direction:column;" class="p-4">
-                            <img width="100px" style="border:1px solid #ced4da; " src="../indietro/public/img/w_d_producto/'.$key->foto.'">
+                            <img width="100px" style="border:1px solid #ced4da; " src="../monitoreo/public/img/w_d_producto/'.$key->foto.'">
                             <button onclick="eliminar('."'".$tipo."'".','.$key->id.','.$key->id_producto.');" class="btn btn-sm btn-secondary"> X </button>
                         </div>
                     ';
@@ -399,8 +399,9 @@ class C_web_producto extends CI_Controller
                     $msj_carac=' *';
                 }
 
-                $cadena_detalle='<select id="select_detalle_producto_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
-                if($key->id_producto!=''){
+                $cadena_detalle=''; 
+                //$cadena_detalle='<select id="select_detalle_producto_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
+                /*if($key->id_producto!=''){
                     foreach ($result_caracteristica as $key_y) {
                         if($key_y->id==$key->id_caracteristica){
                             $cadena_detalle.='<option selected value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
@@ -409,13 +410,13 @@ class C_web_producto extends CI_Controller
                         }
                     }
                 }
-                $cadena_detalle.='</select>'; 
+                $cadena_detalle.='</select>'; */
 
                 $cadena.='
                     <div class="col-lg-12">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-3" style="display:none;">
                                     <label style="color:red; display:none;">'.$msj_carac.'</label>
                                     '.$cadena_detalle.'
                                 </div>
@@ -450,143 +451,147 @@ class C_web_producto extends CI_Controller
         $result_marca = $this->M_web_marca->get_marcas('web_marca',$dato);
         $cadena ='';
         $contador=0; 
-        foreach ($result as $key) {
-            $contador++; 
-            $msj_nom = '';
-            $msj_des = '';
-            $tipo = "'".'productos'."'";
+        if($result=='error'){
+            $cadena ='<label>Sin Resultados</label>';
+        }else{
+            foreach ($result as $key) {
+                $contador++; 
+                $msj_nom = '';
+                $msj_des = '';
+                $tipo = "'".'productos'."'";
 
-            if($key->t_nombre==''){
-                $msj_nom=' * Obligatorio';
-            }
-            if($key->t_des_breve==''){
-                $msj_des=' * Obligatorio';
-            }
+                if($key->t_nombre==''){
+                    $msj_nom=' * Obligatorio';
+                }
+                if($key->t_des_breve==''){
+                    $msj_des=' * Obligatorio';
+                }
 
-            $cadena_marca='<select id="select_marca_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
-            if($key->id_marca!=''){
-                foreach ($result_marca as $key_y) {
-                    if($key_y->id==$key->id_marca){
-                        $cadena_marca.='<option selected value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
-                    }else{
-                        $cadena_marca.='<option  value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
+                $cadena_marca='<select id="select_marca_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
+                if($key->id_marca!=''){
+                    foreach ($result_marca as $key_y) {
+                        if($key_y->id==$key->id_marca){
+                            $cadena_marca.='<option selected value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
+                        }else{
+                            $cadena_marca.='<option  value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
+                        }
                     }
                 }
-            }
-            $cadena_marca.='</select>'; 
+                $cadena_marca.='</select>'; 
 
-            $cadena_categoria='<select id="select_categoria_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
-            if($key->id_marca!=''){
-                foreach ($result_categoria as $key_y) {
-                    if($key_y->id==$key->id_categoria){
-                        $cadena_categoria.='<option selected value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
-                    }else{
-                        $cadena_categoria.='<option  value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
+                $cadena_categoria='<select id="select_categoria_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
+                if($key->id_marca!=''){
+                    foreach ($result_categoria as $key_y) {
+                        if($key_y->id==$key->id_categoria){
+                            $cadena_categoria.='<option selected value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
+                        }else{
+                            $cadena_categoria.='<option  value="'.$key_y->id.'">'.$key_y->descripcion.'</option>';
+                        }
                     }
                 }
-            }
-            $cadena_categoria.='</select>'; 
+                $cadena_categoria.='</select>'; 
 
-            $cadena_activo='<select id="select_activo_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
-            if($key->pag_inicio==0){
-                $cadena_activo.='<option selected value="0">NO</option>';
-                $cadena_activo.='<option  value="1">SI</option>';
-            }else{
-                $cadena_activo.='<option  value="0">NO</option>';
-                $cadena_activo.='<option  selected value="1">SI</option>';
-            }
-            $cadena_activo.='</select>'; 
+                $cadena_activo='<select id="select_activo_'.$key->id.'" class="form-control form-control-sm" ><option value="">Seleccione</option>'; 
+                if($key->pag_inicio==0){
+                    $cadena_activo.='<option selected value="0">NO</option>';
+                    $cadena_activo.='<option  value="1">SI</option>';
+                }else{
+                    $cadena_activo.='<option  value="0">NO</option>';
+                    $cadena_activo.='<option  selected value="1">SI</option>';
+                }
+                $cadena_activo.='</select>'; 
 
 
-            $img = 'sinimagen.png';
-            if($key->foto!=''){
-                $img = $key->foto;
-            }
-            $cadena.='
-                <div class="card mt-2">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2" >
-                                <div class="mb-3" style="text-align: center;">
-                                    <img id="img_producto_'.$key->id.'" style="width:128px;" src="../indietro/public/img/w_producto/'.$img.'">
+                $img = 'sinimagen.png';
+                if($key->foto!=''){
+                    $img = $key->foto;
+                }
+                $cadena.='
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2" >
+                                    <div class="mb-3" style="text-align: center;">
+                                        <img id="img_producto_'.$key->id.'" style="width:128px;" src="../monitoreo/public/img/w_producto/'.$img.'">
+                                    </div>
+                                </div>                        
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="">Nombre</label>
+                                        <label style="color:red;">'.$msj_nom.'</label>
+                                        <input type="text" class="form-control form-control-sm" id="t_nombre_productos_'.$key->id.'" placeholder="nombre" value="'.$key->t_nombre.'" required>
+                                        <label class="form-label" for="">Descripción</label>
+                                        <label style="color:red;">'.$msj_des.'</label>
+                                        <textarea type="text" class="form-control pt-2" id="t_descripcion_productos_'.$key->id.'" placeholder="nombre" required>'.$key->t_des_breve.'</textarea>
+                                        <div class="pt-1" style="display:flex;">
+                                            <div style="width:30%">
+                                                <label class="form-label" for="">Marca </label>'.$cadena_marca.'
+                                            </div>
+                                            <div style="width:30%">
+                                                <label class="form-label" for="">Categorìa </label>'.$cadena_categoria.'
+                                            </div>
+                                            <div style="width:30%">
+                                                <label class="form-label" for="">Pag.Inicio </label>'.$cadena_activo.'
+                                            </div>
+                                        </div>
+                                        <label class="mt-1">Foto: </label>
+                                        <input class="form-control form-control-sm" name="file_productos" type="file" id="file_productos_'.$key->id.'">
+                                    </div>
                                 </div>
-                            </div>                        
-                            <div class="col-md-8">
-                                <div class="mb-3">
-                                    <label class="form-label" for="">Nombre</label>
-                                    <label style="color:red;">'.$msj_nom.'</label>
-                                    <input type="text" class="form-control form-control-sm" id="t_nombre_productos_'.$key->id.'" placeholder="nombre" value="'.$key->t_nombre.'" required>
-                                    <label class="form-label" for="">Descripción</label>
-                                    <label style="color:red;">'.$msj_des.'</label>
-                                    <textarea type="text" class="form-control pt-2" id="t_descripcion_productos_'.$key->id.'" placeholder="nombre" required>'.$key->t_des_breve.'</textarea>
-                                    <div class="pt-1" style="display:flex;">
-                                        <div style="width:30%">
-                                            <label class="form-label" for="">Marca </label>'.$cadena_marca.'
+                                <div class="col-md-2">
+                                    <div class="mt-4">
+                                        <button title="actualizar" class="btn btn-danger btn-sm" onclick="actualizar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-update"></i> </button>
+                                        <button title="eliminar" class="btn btn-danger btn-sm" onclick="eliminar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-delete"></i> </button>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="col-lg-12">
+                                                <span>Detalle Técnica </span>
+                                                <button title="Ver Características" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_detalle('.$tipo.','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
+                                                <button title="Ver Características" class="btn btn-danger btn-sm form-control mt-1" onclick="agregar('."'"."detalle"."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Agregar</button>
+                                            </div>
+                                            <div class="col-lg-12" style="display:none;">
+                                                <span>Slider </span>
+                                                <button title="Ver Detalle Slider" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_slider('."'".'slider'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <span>Fotos </span>
+                                                <button title="Ver Detalle Fotos Adicionales" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_fotos('."'".'fotos'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
+                                            </div>
+                                            <div class="col-lg-12" style="display:none;">
+                                                <span>Redes Sociales </span>
+                                                <button title="Ver redes sociales del producto" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_redes('."'".'redes'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <span>PDF</span>
+                                                <button title="Ver redes sociales del producto" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_pdf('."'".'pdf'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
+                                            </div>
                                         </div>
-                                        <div style="width:30%">
-                                            <label class="form-label" for="">Categorìa </label>'.$cadena_categoria.'
-                                        </div>
-                                        <div style="width:30%">
-                                            <label class="form-label" for="">Pag.Inicio </label>'.$cadena_activo.'
+                                        <div class="col-lg-10 mt-2">
+                                            <div class="row" id="panel_archivo_'.$key->id.'">
+                                            </div>
+                                            <div class="row" id="panel_caracteristica_'.$key->id.'">
+                                            </div>
+                                            <div class="row" id="panel_slider_'.$key->id.'">
+                                            </div>
+                                            <div class="row" id="panel_fotos_'.$key->id.'">
+                                            </div>
+                                            <div class="row" id="panel_redes_'.$key->id.'">
+                                            </div>                                        
                                         </div>
                                     </div>
-                                    <label class="mt-1">Foto: </label>
-                                    <input class="form-control form-control-sm" name="file_productos" type="file" id="file_productos_'.$key->id.'">
                                 </div>
+                                <div class="col-lg-2">
+                                </div>   
+
                             </div>
-                            <div class="col-md-2">
-                                <div class="mt-4">
-                                    <button title="actualizar" class="btn btn-danger btn-sm" onclick="actualizar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-update"></i> </button>
-                                    <button title="eliminar" class="btn btn-danger btn-sm" onclick="eliminar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-delete"></i> </button>
-                                </div>
-                            </div> 
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <div class="col-lg-12">
-                                            <span>Detalle Técnica </span>
-                                            <button title="Ver Características" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_detalle('.$tipo.','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
-                                            <button title="Ver Características" class="btn btn-danger btn-sm form-control mt-1" onclick="agregar('."'"."detalle"."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Agregar</button>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <span>Slider </span>
-                                            <button title="Ver Detalle Slider" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_slider('."'".'slider'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <span>Fotos </span>
-                                            <button title="Ver Detalle Fotos Adicionales" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_fotos('."'".'fotos'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <span>Redes Sociales </span>
-                                            <button title="Ver redes sociales del producto" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_redes('."'".'redes'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <span>PDF</span>
-                                            <button title="Ver redes sociales del producto" class="btn btn-danger btn-sm form-control mt-1" onclick="obtener_datos_pdf('."'".'pdf'."'".','.$key->id.');" > <i class="mdi mdi-account-details"></i> Ver</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-10 mt-2">
-                                        <div class="row" id="panel_archivo_'.$key->id.'">
-                                        </div>
-                                        <div class="row" id="panel_caracteristica_'.$key->id.'">
-                                        </div>
-                                        <div class="row" id="panel_slider_'.$key->id.'">
-                                        </div>
-                                        <div class="row" id="panel_fotos_'.$key->id.'">
-                                        </div>
-                                        <div class="row" id="panel_redes_'.$key->id.'">
-                                        </div>                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                            </div>   
-
                         </div>
                     </div>
-                </div>
-            ';
-        }            
+                ';
+            } 
+        }           
         $ar['datos']=$cadena;
         echo json_encode($ar); 
     }
@@ -645,7 +650,7 @@ class C_web_producto extends CI_Controller
                         <div class="row">
                             <div class="col-md-2" style="background: #c5c5c5;">
                                 <div class="mb-3" style="text-align: center;">
-                                    <img id="img_caracteristica_'.$key->id.'" src="../indietro/public/img/w_detalle/w_iconos/'.$img.'">
+                                    <img id="img_caracteristica_'.$key->id.'" src="../monitoreo/public/img/w_detalle/w_iconos/'.$img.'">
                                 </div>
                             </div>                        
                             <div class="col-md-6">
