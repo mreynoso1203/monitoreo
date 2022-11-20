@@ -215,7 +215,7 @@ class C_web_informacion extends CI_Controller
                         <div class="row">
                             <div class="col-md-2" >
                                 <div class="mb-3" style="text-align: center;">
-                                    <img id="img_slider_'.$key->id.'" style="width:128px;" src="../indietro/public/img/w_slider/'.$img.'">
+                                    <img id="img_slider_'.$key->id.'" style="width:128px;" src="../monitoreo/public/img/w_slider/'.$img.'">
                                 </div>
                             </div>                        
                             <div class="col-md-8">
@@ -235,7 +235,7 @@ class C_web_informacion extends CI_Controller
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label" for="">Walink</label>
-                                            <input type="text" class="form-control form-control-sm" id="t_texto_walink_'.$key->id.'" placeholder="nombre" value="'.$key->link.'" required>
+                                            <input type="text" class="form-control form-control-sm" id="t_texto_walink_slider_'.$key->id.'" placeholder="nombre" value="'.$key->link.'" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label" for="">Texto Boton</label>
@@ -246,7 +246,7 @@ class C_web_informacion extends CI_Controller
                                         </div>                                                                                                                        
                                     </div>
 
-                                    <label class="mt-1">Foto (1920x1040 pixeles)</label>
+                                    <label class="mt-1">Foto (500x400 pixeles)</label>
                                     <input class="form-control form-control-sm" name="file_slider" type="file" id="file_slider_'.$key->id.'">
                                 </div>
                             </div>
@@ -323,19 +323,19 @@ class C_web_informacion extends CI_Controller
         switch ($tipo) {
             case 'slider':
                 $table='web_slider';
-                $ruta='../indietro/public/img/w_slider';
+                $ruta='../monitoreo/public/img/w_slider';
                 $campo='imagen';
                 $allowed ='png|jpg|jpeg';
                 break;
             case 'banner':
                 $table='web_banner_inicio';
-                $ruta='../indietro/public/img/w_banner';
+                $ruta='../monitoreo/public/img/w_banner';
                 $campo='imagen';
                 $allowed ='png|jpg|jpeg';
                 break;
             case 'seccion':
                 $table='web_secciones';
-                $ruta='../indietro/public/img/w_seccion';
+                $ruta='../monitoreo/public/img/w_seccion';
                 $campo='imagen';
                 $allowed ='png|jpg|jpeg';
                 break;                                
@@ -378,7 +378,7 @@ class C_web_informacion extends CI_Controller
                     $valida='no';
             }         
         }else{
-            $nombre="sinimagen.jpg".$this->upload->display_errors();
+            $valida="sinimagen.jpg".$this->upload->display_errors();
             //.$this->upload->display_errors();;
         }        
 
@@ -425,26 +425,26 @@ class C_web_informacion extends CI_Controller
                         <div class="row">
                             <div class="col-md-2" >
                                 <div class="mb-3" style="text-align: center;">
-                                    <img id="img_banner_'.$key->id.'" style="width:128px;" src="../indietro/public/img/w_banner/'.$img.'">
+                                    <img id="img_banner_'.$key->id.'" style="width:128px;" src="../monitoreo/public/img/w_banner/'.$img.'">
                                 </div>
                             </div>                        
                             <div class="col-md-8">
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label class="form-label" for="">Walink</label>
-                                            <input type="text" class="form-control form-control-sm" id="t_texto_walink_'.$key->id.'" placeholder="nombre" value="'.$key->walink.'" required>
+                                            <label class="form-label" for="">Link</label>
+                                            <input type="text" class="form-control form-control-sm" id="t_texto_walink_banner_'.$key->id.'" placeholder="nombre" value="'.$key->walink.'" required>
                                         </div>
                                     </div>
 
-                                    <label class="mt-1">Foto (1035x1259 pixeles)</label>
+                                    <label class="mt-1">Foto (360x475 pixeles)</label>
                                     <input class="form-control form-control-sm" name="file_banner" type="file" id="file_banner_'.$key->id.'">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="mt-4">
                                     <button title="actualizar" class="btn btn-danger btn-sm" onclick="actualizar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-update"></i> Actualizar</button>
-                                    <button title="eliminar" class="btn btn-danger btn-sm" onclick="eliminar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-delete"></i>  </button>
+                                    <!--<button title="eliminar" class="btn btn-danger btn-sm" onclick="eliminar('.$tipo.','.$key->id.',0);" > <i class="mdi mdi-delete"></i>  </button>-->
                                 </div>
                             </div> 
                         </div>
@@ -474,7 +474,7 @@ class C_web_informacion extends CI_Controller
                         <div class="row">
                             <div class="col-md-2" >
                                 <div class="mb-3" style="text-align: center;">
-                                    <img id="img_banner_'.$key->id.'" style="width:128px;" src="../indietro/public/img/w_seccion/'.$img.'">
+                                    <img id="img_banner_'.$key->id.'" style="width:128px;" src="../monitoreo/public/img/w_seccion/'.$img.'">
                                 </div>
                             </div>                        
                             <div class="col-md-8">
@@ -484,21 +484,21 @@ class C_web_informacion extends CI_Controller
                                             <label class="form-label" for="">Texto 1</label>
                                             <input type="text" class="form-control form-control-sm" id="t_seccion_texto1_'.$key->id.'" placeholder="Texto titulo" value="'.$key->texto_1.'" required>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label class="form-label" for="">Texto 2</label>
-                                            <input type="text" class="form-control form-control-sm" id="t_seccion_texto2_'.$key->id.'" placeholder="Texto corto" value="'.$key->texto_2.'" required>
+                                            <textarea  class="form-control form-control-sm" id="t_seccion_texto2_'.$key->id.'">'.$key->texto_2.'</textarea>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label" for="">Texto Botón</label>
                                             <input type="text" class="form-control form-control-sm" id="t_seccion_texto_boton_'.$key->id.'" placeholder="Texto Boton" value="'.$key->texto_boton.'" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" for="">Link WhatSapp</label>
+                                            <label class="form-label" for="">Link</label>
                                             <input type="text" class="form-control form-control-sm" id="t_seccion_link_'.$key->id.'" placeholder="Link de Whatsapp" value="'.$key->link.'" required>
                                         </div>
                                     </div>
 
-                                    <label class="mt-1">Foto (1920x550 pixeles)</label>
+                                    <label class="mt-1">Foto (140x140 pixeles)</label>
                                     <input class="form-control form-control-sm" name="file_seccion" type="file" id="file_seccion_'.$key->id.'">
                                 </div>
                             </div>

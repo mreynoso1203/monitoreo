@@ -212,7 +212,7 @@
                                                 <div class="col-lg-12">
                                                     <div>
                                                         <a href="<?php echo base_url();?>web_informacion" class="dropdown-item" data-key="t-alerts">Página Inicio</a>
-                                                        <a href="<?php echo base_url();?>web_distribuidor" class="dropdown-item" data-key="t-alerts">Página Distribuidor</a>
+                                                        <!--<a href="<?php echo base_url();?>web_distribuidor" class="dropdown-item" data-key="t-alerts">Página Distribuidor</a>-->
                                                         <a href="<?php echo base_url();?>web_nosotros" class="dropdown-item" data-key="t-alerts">Página Nosotros</a>
                                                         <a href="<?php echo base_url();?>web_contacto" class="dropdown-item" data-key="t-alerts">Página Contacto</a>
                                                         <a href="<?php echo base_url();?>web_eventos" class="dropdown-item" data-key="t-alerts">Página Eventos</a>

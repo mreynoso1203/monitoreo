@@ -133,12 +133,12 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-heading4">
                                     <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
-                                        Secciòn Banners
+                                        Sección Banner Nosotros
                                     </button>
                                 </h2>
                                 <div id="flush-collapse4" class="accordion-collapse collapse" aria-labelledby="flush-heading4" data-bs-parent="#accordionFlushExample">
                                     <div class="card">
-                                        <div class="card-header">
+                                        <div class="card-header" style="display:none;">
                                             <div style="display:flex;justify-content: space-between;">
                                                 <button class="btn btn-sm btn-danger" onclick="agregar('banner',0);"><i class="fas fa-plus"></i>Agregar</button>
                                             </div>
@@ -153,7 +153,7 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-heading5">
                                     <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
-                                        Secciònes
+                                        Sección Productos de Calidad
                                     </button>
                                 </h2>
                                 <div id="flush-collapse5" class="accordion-collapse collapse" aria-labelledby="flush-heading5" data-bs-parent="#accordionFlushExample">
@@ -409,13 +409,13 @@
                 input1  = $('#t_texto1_'+id).val();
                 input2  = $('#t_texto2_'+id).val();
                 input3  = $('#t_texto3_'+id).val();
-                input4  = $('#t_texto_walink_'+id).val();
+                input4  = $('#t_texto_walink_slider_'+id).val();
                 input5 = $('#t_texto_boton_'+id).val();
                 input6 = $('#select_activo_'+id).val();
                 file    = 'file_slider_'+id;
                 break;
             case 'banner':
-                input1  = $('#t_texto_walink_'+id).val();
+                input1  = $('#t_texto_walink_banner_'+id).val();
                 file    = 'file_banner_'+id;
                 break;
             case 'seccion':
@@ -425,10 +425,9 @@
                 input4  = $('#t_seccion_link_'+id).val();
                 file    = 'file_seccion_'+id;
                 break;                
-            default:                
+            default: 
                 break;
         }
-        
         $.ajax({
             type: "POST",
             url: '<?php echo base_url();?>C_web_informacion/actualizar',
@@ -452,16 +451,32 @@
                     //alertify.success('Actualización realizada correctamente.');
                     switch (tipo) {
                         case 'slider':
-                            // obtener_datos_slider();
-                            subir_foto(file,tipo,id);
+                            var imgVal = $('#'+file).val(); 
+                            if(imgVal==''){ 
+                                obtener_datos();
+                                notificacion('Actualización  '+tipo,'Se actualizó correctamente la '+tipo+'.','success');
+                            }else{
+                                subir_foto(file,tipo,id);
+                            }
                             break;
                         case 'banner':
+                            var imgVal = $('#'+file).val(); 
+                            if(imgVal==''){ 
+                                obtener_datos();
+                                notificacion('Actualización  '+tipo,'Se actualizó correctamente la '+tipo+'.','success');
+                            }else{
+                                subir_foto(file,tipo,id);
+                            }
                             // obtener_datos_slider();
-                            subir_foto(file,tipo,id);
                             break; 
                         case 'seccion':
-                            // obtener_datos_slider();
-                            subir_foto(file,tipo,id);
+                            var imgVal = $('#'+file).val(); 
+                            if(imgVal==''){ 
+                                obtener_datos();
+                                notificacion('Actualización  '+tipo,'Se actualizó correctamente la '+tipo+'.','success');
+                            }else{
+                                subir_foto(file,tipo,id);
+                            }
                             break;                             
                         default:
                             break;
