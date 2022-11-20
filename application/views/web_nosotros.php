@@ -20,7 +20,7 @@
             </div>
 
             <!-- Informaciòn Imagen -->
-            <div class="row">
+            <div class="row" style="display:none;">
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
@@ -45,7 +45,7 @@
             </div>
 
             <!--Foto Portada-->
-            <div class="row">
+            <div class="row" style="display:none;">
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">
@@ -69,8 +69,86 @@
                 </div>
             </div>
 
-            <!-- Informaciòn Distribuidores -->
+            <!--FOTO DE ACERCA DE NOSOTROS-->
             <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">IMAGENES SECCIÓN ACERCA DE NOSOTROS</h4>
+                            <p class="card-title-desc">Las fotos de la sección debe estar en una resolución de 610 x 640 pixeles.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="">Adjuntar Foto 1</label>
+                                        <div style="display:flex;">
+                                            <input name="file_cabecera" type="file" id="file_img_1">
+                                            <button onclick="subir_foto('file_img_1','img_1');"  style="margin-left:5px;" class="btn btn-sm btn-danger"> Subir </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="">Adjuntar Foto 2</label>
+                                        <div style="display:flex;">
+                                            <input name="file_cabecera" type="file" id="file_img_2">
+                                            <button onclick="subir_foto('file_img_2','img_2');"  style="margin-left:5px;" class="btn btn-sm btn-danger"> Subir </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="">Adjuntar Foto 3</label>
+                                        <div style="display:flex;">
+                                            <input name="file_cabecera" type="file" id="file_img_3">
+                                            <button onclick="subir_foto('file_img_3','img_3');"  style="margin-left:5px;" class="btn btn-sm btn-danger"> Subir </button>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="">Adjuntar Foto 4</label>
+                                        <div style="display:flex;">
+                                            <input name="file_cabecera" type="file" id="file_img_4">
+                                            <button onclick="subir_foto('file_img_4','img_4');"  style="margin-left:5px;" class="btn btn-sm btn-danger"> Subir </button>
+                                        </div>
+                                    </div>
+                                </div>                                                                                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+          <!--FOTO DE LO QUE BUSCAMOS-->
+          <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">FOTO SECCIÓN LO QUE BUSCAMOS</h4>
+                            <p class="card-title-desc">Las fotos de la sección debe estar en una resolución de 500 x 400 pixeles.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="">Adjuntar Foto 1</label>
+                                        <div style="display:flex;">
+                                            <input name="file_cabecera" type="file" id="file_img_5">
+                                            <button onclick="subir_foto('file_img_5','img_5');"  style="margin-left:5px;" class="btn btn-sm btn-danger"> Subir </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+            <!-- Informaciòn Distribuidores -->
+            <div class="row" style="display:none;">
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header">

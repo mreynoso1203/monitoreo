@@ -52,15 +52,40 @@ class C_web_nosotros extends CI_Controller
         $tipo = trim($this->input->post('tipo',true));
         switch ($tipo) {
             case 'cabecera':
-                $ruta = "../indietro/public/img/w_nosotros"; 
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
                 $file_name = 'cabecera_';
                 $campo = 'img_cabecera';
                 break;
             case 'portada':
-                $ruta = "../indietro/public/img/w_nosotros"; 
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
                 $file_name = 'portada_';
                 $campo = 'img_portada';
-                break;            
+                break;   
+            case 'img_1':
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
+                $file_name = 'img_s1_1';
+                $campo = 'img_1';
+                break;  
+            case 'img_2':
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
+                $file_name = 'img_s1_2';
+                $campo = 'img_2';
+                break;
+            case 'img_3':
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
+                $file_name = 'img_s1_3';
+                $campo = 'img_3';
+                break; 
+            case 'img_4':
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
+                $file_name = 'img_s1_4';
+                $campo = 'img_4';
+                break;
+            case 'img_5':
+                $ruta = "../monitoreo/public/img/w_nosotros"; 
+                $file_name = 'img_s2_5';
+                $campo = 'img_5';
+                break;                                                                                            
             default:
                 break;
         }
